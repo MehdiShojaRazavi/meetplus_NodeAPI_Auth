@@ -1,0 +1,30 @@
+{
+  "name": "nodeapi-docker",
+  "version": "1.0.0",
+  "description": "Node API with Express, MYSQL and Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon bin/www"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "MYSQL",
+    "Docker"
+  ],
+  "author": "MrShoja",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "ip": "^1.1.8",
+    "mysql": "^2.18.1",
+    "pino": "^8.4.2",
+    "pino-pretty": "^9.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
