@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const emailValidator = require('email-validator');
+const bcrypt = require('bcrypt');
+const SALT_ROUND = 12;
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -31,4 +33,20 @@ const UserSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('User', userSchema)
+UserSchema.pre('save', async function preSave(next){
+  const user = this;
+  if (!user.isModified('password')) return next();
+  try{
+    const hash = await bcrypt.hash(user.password, SALT_ROUND);
+    user.password = hash;
+    return next();
+  } catch(err){
+    return next(err);
+  }
+});
+
+UserSchema.methods.comparePassword = async function comparePassword(candidate){
+  return bcrypt.compare(candidate, UserSchema);
+};
+
+module.exports = mongoose.model('User', UserSchema)
