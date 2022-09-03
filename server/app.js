@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 module.exports = (config) => {
   const app = express();
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.json());
 
   app.use("/", routes);
 
